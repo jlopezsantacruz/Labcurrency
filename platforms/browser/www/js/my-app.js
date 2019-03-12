@@ -1,6 +1,8 @@
 // Initialize app
 var myApp = new Framework7();
 
+// global variable to get the current ratio and use in geteuros or getDollars function
+var exchangeratioUSDEUR;
 
 // If we need to use custom DOM library, let's save it to $$ variable:
 var $$ = Dom7;
@@ -13,6 +15,7 @@ var mainView = myApp.addView('.view-main', {
 
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
+    getcurrency();
     console.log("Device is ready!");
 });
 
@@ -42,25 +45,8 @@ $$(document).on('pageInit', '.page[data-page="about"]', function (e) {
     myApp.alert('Here comes About page');
 })
 
-function add()
-{
-    var numberone = document.getElementById('numberone').value;
-    var numbertwo = document.getElementById('numbertwo').value;
 
-    numberone = parseInt(numberone);
-    numbertwo = parseInt(numbertwo);
-
-    var result = numberone + numbertwo
-
-    console.log(numberone);
-    console.log(numbertwo);
-    console.log(result);
-
-    //Document.getElementById('result').innerHTML = result;
-    document.getElementById('result').innerHTML = result;
-}
-
-function openCage(){
+function getcurrency(){
 
     // The XMLHttpRequest object, is the one in 
     // charge of handleing the request for us
@@ -100,13 +86,45 @@ function openCage(){
         var usd = responseJSON.quotes.USDEUR;
 
         // Formattng data to put it on the front end
-        var oc = "usd: " + usd;
+        var oc = usd;
+        exchangeratioUSDEUR = responseJSON.quotes.USDEUR;
 
-        // Placing formatted data on the front ed
+        // Placing formatted data on the front end
         document.getElementById('currency').innerHTML = oc;
         console.log(oc);
     }
     
 }
+
+function converttodollars()
+{
+  //Getting the value of the total of euros sent by the end user
+    var numberone = document.getElementById('euros').value;
+
+    // calculating the value in dollars with the currentExcange ratio
+    var convertdollars = numberone / exchangeratioUSDEUR;
+
+    console.log(numberone);
+    console.log(exchangeratioUSDEUR);
+    console.log(convertdollars);
+
+    //Sending the calculated data to front end
+    document.getElementById('convertdollars').innerHTML = convertdollars;
+}
+
+function converttoeuros()
+{
+  //Getting the value of the total of dollars sent by the end user
+    var numberone = document.getElementById('dollars').value;
+// calculating the value in euros with the currentExcange ratio
+    var converteuros = numberone * exchangeratioUSDEUR;
+
+    console.log(numberone);
+    console.log(exchangeratioUSDEUR);
+    console.log(converteuros);
+//Sending the calculated data to front end
+    document.getElementById('converteuros').innerHTML = converteuros;
+}
+
 
 

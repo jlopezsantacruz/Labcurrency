@@ -71,28 +71,57 @@
                     <!-- Scrollable page content -->
                     <div class="page-content">
 
+                         
                             <div class="content-block">
-                                <p1>Live exchange currency USD to EUR</p1>
+                                <p1><h1>USD to EUR live ratio</h1></p1>
+                                <p2>instructions: please press the button to refresh the exchange ratio live</p2>
                                 <br>
                                 <br>
-                                    <button class="col button button-fill button-round" onclick="openCage()">currencylayer<br><br><br>
-                                    </div>
-                                    <Div id="currency"></Div>
-
-                            <div class="content-block">
+                                    <button class="col button button-fill button-round" onclick="getcurrency()">refresh</button>
+                            </div>
                             
-                                Euros   : <input type="text" id="numberone"><br><br>
-                                Dollars : <input type="text" id="numbertwo"><br><br>
-                               
-                                <button class="col button button-fill button-round" onclick="add()">Convert<br>
-                        </div>
-                        <div class="content-block">
-                        <Div id="result"></Div>
+                            <div class="content-block">      
+                            <Div id="currency"></Div>
+                            </div>  
 
-                        
-                       
-                        
+                            
+                            
+
+                        <div class="content-block">
+                            
+                        <Div id="result"></Div>
+                        </div>  
+
+                        <div class="content-block">
+
+                                Euros to Dollars : <input type="text" id="euros"><br><br>
+                               
+                                <button class="col button button-fill button-round" onclick="converttodollars()">Convert</button><br>
+
+                            </div>
+                        <div class="content-block">
+                            
+                        <Div id="convertdollars"></Div>
+
                         </div>
+                        
+                        <div class="content-block">
+                            
+                                Dollars to Euros  : <input type="text" id="dollars"><br><br>
+                               
+                                <button class="col button button-fill button-round" onclick="converttoeuros()">Convert</button><br>
+
+                            </div>
+                        <div class="content-block">
+                            
+                        <Div id="converteuros"></Div>
+
+                        </div>
+
+
+
+
+
                     </div>
                 </div>
             </div>
